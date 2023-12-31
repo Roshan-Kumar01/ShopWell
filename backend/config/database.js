@@ -1,15 +1,15 @@
 const mongoose = require("mongoose")
 
 const connectDatabase = async () => {
-    try {
-      await mongoose.connect(process.env.MONGO_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true, 
+    mongoose
+      .connect(process.env.MONGO_URL, {
+        useNewUrlParser:true,
+        useUnifiedTopology: true,
+      })
+      .then((data) => {
+         console.log(`Mongodb connected with server: ${data.connection.host}`);
       });
-      console.log('Connected to MongoDB Atlas');
-    } catch (error) {
-      console.error('Error connecting to MongoDB:', error);
-    }
+      //yaha se catch hata diya because of unhandled  promise rejection jo hamne server.js ke last me likha hai
   };
 
 module.exports = connectDatabase;
