@@ -7,7 +7,8 @@ import { useParams } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component"
 import ReviewCard from "./ReviewCard.js"
 import Loader from "../layout/Loader/Loader"
- 
+import MetaData from "../layout/MetaData";
+
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { product, loading, error } = useSelector((state) => state.productDetails);
@@ -29,6 +30,7 @@ const ProductDetails = () => {
   return (
      <Fragment>
       {loading ? <Loader/> :<Fragment>
+      <MetaData title={`${product.name} -- ECOMMERCE`} />
       <div className="ProductDetails">
         <div>
           <Carousel>
