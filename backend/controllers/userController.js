@@ -171,24 +171,41 @@ exports.updatePassword = catchAsyncErrors(async(req, res, next) => {
 })
 
 // update User Profile
-exports.updateProfile = catchAsyncErrors(async(req, res, next) => {
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     const newUserData = {
-        name: req.body.name,
-        email: req.body.email,
+      name: req.body.name,
+      email: req.body.email,
+    };
+  
+    if (req.body.avatar !== "") {
+      const user = await User.findById(req.user.id);
+  
+      const imageId = user.avatar.public_id;
+  
+      await cloudinary.v2.uploader.destroy(imageId);
+  
+      const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: "avatars",
+        width: 150,
+        crop: "scale",
+      });
+  
+      newUserData.avatar = {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      };
     }
-
-    // we will add cloudinary later
-
+  
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
-        new: true,
-        runValidators: true,
-        useFindAndModify: false,
+      new: true,
+      runValidators: true,
+      useFindAndModify: false,
     });
-
+  
     res.status(200).json({
-        success: true,
+      success: true,
     });
-});
+  });
 
 //Get all user(admin)
 exports.getAllUser = catchAsyncErrors(async(req, res, next) => {

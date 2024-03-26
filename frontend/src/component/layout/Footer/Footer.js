@@ -1,7 +1,8 @@
-import React from 'react'
-import playStore from "../../../images/playstore.png"
-import appStore from "../../../images/Appstore.png"
-import "./Footer.css"
+import React from "react";
+import playStore from "../../../images/playstore.png";
+import appStore from "../../../images/Appstore.png";
+import "./Footer.css";
+
 const Footer = () => {
   return (
     <footer id="footer">
@@ -13,19 +14,20 @@ const Footer = () => {
       </div>
 
       <div className="midFooter">
-        <h1>ECOMMERCE</h1>
+        <h1>ECOMMERCE.</h1>
         <p>High Quality is our first priority</p>
 
-        <p>Copyright 2024 &copy; meRoshan</p>
+        <p>Copyrights 2024 &copy; Roshan</p>
       </div>
 
       <div className="rightFooter">
-        <a href="www.google.com">Instagram</a>
-        <a href="www.google.com">Youtube</a>
-        <a href="www.google.com">Facebook</a>
+        <h4>Follow Us</h4>
+        <a href="https://www.instagram.com/rosh_an14323/">Instagram</a>
+        <a href="https://www.instagram.com/rosh_an14323/">Youtube</a>
+        <a href="https://www.instagram.com/rosh_an14323/">Facebook</a>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
