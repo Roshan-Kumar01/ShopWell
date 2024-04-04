@@ -7,11 +7,12 @@ import FaceIcon from '@mui/icons-material/Face';
 import { Link } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { clearErrors, login, register } from "../../actions/userAction.js";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const LoginSignUp = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const { error, loading, isAuthenticated } = useSelector(
         (state) => state.user
@@ -34,8 +35,9 @@ const LoginSignUp = () => {
 
     const [avatar, setAvatar] = useState("/Profile.png");
     const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
-    const redirect = "/account";
 
+    const redirect = location.search ?"/" + location.search.split("=")[1] : "/account";
+    console.log("redirect:"+redirect);
     const loginSubmit = (e) => {
         e.preventDefault();
         dispatch(login(loginEmail, loginPassword));
@@ -46,7 +48,7 @@ const LoginSignUp = () => {
           navigate(redirect);
         }
       }, [dispatch, error, navigate, isAuthenticated, redirect]);
-
+ 
     const switchTabs = (e, tab) => {
         if (tab === "login") {
           switcherTab.current.classList.add("shiftToNeutral");

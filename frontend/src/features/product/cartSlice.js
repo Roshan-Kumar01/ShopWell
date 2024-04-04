@@ -10,7 +10,9 @@ const initialState = {
   cartItems: localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [],
-  shippingInfo: {},
+  shippingInfo: localStorage.getItem("shippingInfo")
+  ? JSON.parse(localStorage.getItem("shippingInfo"))
+  : {},
 };
 
 // Create cart slice

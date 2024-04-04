@@ -5,6 +5,7 @@ import userReducer from '../features/user/userSlice';
 import profileReducer from '../features/user/profileSlice';
 import forgotPasswordReducer from '../features/user/forgotPasswordSlice';
 import cartReducer from "../features/product/cartSlice"
+import newOrderReducer from '../features/order/newOrderSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     user:userReducer,
     profile: profileReducer,
     forgotPassword: forgotPasswordReducer,
-    cart:cartReducer,
+    cart:cartReducer, 
+    newOrder:newOrderReducer, 
   },
 });
