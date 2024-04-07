@@ -27,6 +27,8 @@ import Payment from "./component/Cart/Payment.js"
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import OrderSuccess from "./component/Cart/OrderSuccess.js"
+import MyOrders from "./component/Order/MyOrders.js"
+import OrderDetails from "./component/Order/OrderDetails.js"
 
 function App() { 
      const{isAuthenticated, user} = useSelector((state) => state.user);
@@ -66,7 +68,7 @@ function App() {
          <Route exact path="/password/forgot" element={<ForgotPassword />} />
          <Route exact path="/password/reset/:token" element={<ResetPassword />} />
          <Route exact path="/cart" element={<Cart/>} />
-         <Route exact path="/shipping" element={isAuthenticated ? <Shipping /> : <Navigate to="/login" replace />} />
+         <Route exact path="/shipping" element={isAuthenticated === false? <Navigate to="/login" replace /> : <Shipping />} />
          <Route exact path="/order/confirm" element={isAuthenticated ? <ConfirmOrder /> : <Navigate to="/login" replace />} />
 
          {/* <Elements stripe={loadStripe(stripeApiKey)}> */}
@@ -74,6 +76,8 @@ function App() {
          {/* </Elements> */} 
          {/* <Route path="/process/payment" element={(<Elements stripe={loadStripe(stripeApiKey)}> <Payment /> </Elements> )} /> */}
          <Route exact path="/success" element={isAuthenticated ? <OrderSuccess /> : <Navigate to="/login" replace />} />
+         <Route exact path="/orders" element={isAuthenticated ? <MyOrders /> : <Navigate to="/login" replace />} />
+         <Route exact path="/order/:id" element={isAuthenticated ? <OrderDetails /> : <Navigate to="/login" replace />} />
        </Routes>
        <Footer />
     </Router> 
