@@ -1,48 +1,61 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-    ALL_PRODUCT_FAIL,
-    ALL_PRODUCT_REQUEST,
-    ALL_PRODUCT_SUCCESS,
-    CLEAR_ERRORS,
-} from "../../constants/productConstants";
+  DELETE_PRODUCT_REQUEST,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_FAIL,
+  UPDATE_PRODUCT_REQUEST,
+  UPDATE_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_FAIL,
+  DELETE_PRODUCT_RESET,
+  UPDATE_PRODUCT_RESET,
+  CLEAR_ERRORS
+} from '../../constants/productConstants';
 
-// Initial state
 const initialState = {
-    products: [],
-    loading: false,
-    error: null,
-    productsCount: 0,
-    resultPerPage:0,
-    filteredProductsCount:0,
+  loading: false,
+  isDeleted: false,
+  isUpdated: false,
+  error: null
 };
 
-// Slice creation
 const productSlice = createSlice({
-    name: 'products',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(ALL_PRODUCT_REQUEST, (state) => {
-                state.loading = true;
-            })
-            .addCase(ALL_PRODUCT_SUCCESS, (state, action) => {
-                state.loading = false;
-                state.products = action.payload.products;
-                state.productsCount = action.payload.productsCount;
-                state.resultPerPage = action.payload.resultPerPage;
-                state.filteredProductsCount = action.payload.filteredProductsCount;
-            })
-            .addCase(ALL_PRODUCT_FAIL, (state, action) => {
-                state.loading = false;
-                state.error = action.payload;
-            })
-            .addCase(CLEAR_ERRORS, (state) => {
-                state.error = null;
-            });
-    },
+  name: 'product',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(DELETE_PRODUCT_REQUEST, (state) => {
+        state.loading = true;
+      })
+      .addCase(UPDATE_PRODUCT_REQUEST, (state) => {
+        state.loading = true;
+      })
+      .addCase(DELETE_PRODUCT_SUCCESS, (state, action) => {
+        state.loading = false;
+        state.isDeleted = action.payload;
+      })
+      .addCase(UPDATE_PRODUCT_SUCCESS, (state, action) => {
+        state.loading = false;
+        state.isUpdated = action.payload;
+      })
+      .addCase(DELETE_PRODUCT_FAIL, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(UPDATE_PRODUCT_FAIL, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(DELETE_PRODUCT_RESET, (state) => {
+        state.isDeleted = false;
+      })
+      .addCase(UPDATE_PRODUCT_RESET, (state) => {
+        state.isUpdated = false;
+      })
+      .addCase(CLEAR_ERRORS, (state) => {
+        state.error = null;
+      });
+  }
 });
 
-// Export reducer and actions
-export const { } = productSlice.actions; // No need to export actions in this case
 export default productSlice.reducer;

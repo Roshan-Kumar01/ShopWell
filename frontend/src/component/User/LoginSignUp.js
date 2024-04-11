@@ -9,7 +9,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { clearErrors, login, register } from "../../actions/userAction.js";
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const LoginSignUp = () => {
+const LoginSignUp = () => { 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const location = useLocation();

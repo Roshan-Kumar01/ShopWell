@@ -29,6 +29,10 @@ import { loadStripe } from '@stripe/stripe-js';
 import OrderSuccess from "./component/Cart/OrderSuccess.js"
 import MyOrders from "./component/Order/MyOrders.js"
 import OrderDetails from "./component/Order/OrderDetails.js"
+import Dashboard from "./component/Admin/Dashboard.js"
+import ProductList from "./component/Admin/ProductList.js"
+import NewProduct from './component/Admin/NewProduct.js';
+import UpdateProduct from './component/Admin/UpdateProduct.js';
 
 function App() { 
      const{isAuthenticated, user} = useSelector((state) => state.user);
@@ -78,6 +82,11 @@ function App() {
          <Route exact path="/success" element={isAuthenticated ? <OrderSuccess /> : <Navigate to="/login" replace />} />
          <Route exact path="/orders" element={isAuthenticated ? <MyOrders /> : <Navigate to="/login" replace />} />
          <Route exact path="/order/:id" element={isAuthenticated ? <OrderDetails /> : <Navigate to="/login" replace />} />
+         <Route exact path="/admin/dashboard" element={isAuthenticated && user.role === "admin" ? <Dashboard /> : <Navigate to="/login" replace />} />
+         <Route exact path="/admin/products" element={isAuthenticated && user.role === "admin" ? <ProductList /> : <Navigate to="/login" replace />} />
+         <Route exact path="/admin/product" element={isAuthenticated && user.role === "admin" ? <NewProduct /> : <Navigate to="/login" replace />} />
+         <Route exact path="/admin/product/:id" element={isAuthenticated && user.role === "admin" ? <UpdateProduct /> : <Navigate to="/login" replace />} />
+
        </Routes>
        <Footer />
     </Router> 
