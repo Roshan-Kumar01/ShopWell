@@ -13,9 +13,10 @@ import allOrdersReducer from '../features/order/allOrdersSlice';
 import allUsersReducer from '../features/user/allUsersSlice';
 import productReducer from '../features/product/productSlice';
 import newProductReducer from '../features/product/newProductSlice';
+import orderReducer from '../features/order/orderSlice';
 
 export const store = configureStore({
-  reducer: {
+  reducer: {  
     products:productsReducer,
     product:productReducer,
     productDetails: productDetailsReducer,
@@ -30,5 +31,6 @@ export const store = configureStore({
     allUsers: allUsersReducer,
     allOrders: allOrdersReducer,
     newProduct: newProductReducer,
+    order:orderReducer,
   },
 });

@@ -33,6 +33,8 @@ import Dashboard from "./component/Admin/Dashboard.js"
 import ProductList from "./component/Admin/ProductList.js"
 import NewProduct from './component/Admin/NewProduct.js';
 import UpdateProduct from './component/Admin/UpdateProduct.js';
+import OrderList from './component/Admin/OrderList.js';
+import ProcessOrder from './component/Admin/ProcessOrder.js';
 
 function App() { 
      const{isAuthenticated, user} = useSelector((state) => state.user);
@@ -86,6 +88,8 @@ function App() {
          <Route exact path="/admin/products" element={isAuthenticated && user.role === "admin" ? <ProductList /> : <Navigate to="/login" replace />} />
          <Route exact path="/admin/product" element={isAuthenticated && user.role === "admin" ? <NewProduct /> : <Navigate to="/login" replace />} />
          <Route exact path="/admin/product/:id" element={isAuthenticated && user.role === "admin" ? <UpdateProduct /> : <Navigate to="/login" replace />} />
+         <Route exact path="/admin/orders" element={isAuthenticated && user.role === "admin" ? <OrderList /> : <Navigate to="/login" replace />} />
+         <Route exact path="/admin/order/:id" element={isAuthenticated && user.role === "admin" ? <ProcessOrder /> : <Navigate to="/login" replace />} />
 
        </Routes>
        <Footer />
