@@ -14,6 +14,9 @@ import allUsersReducer from '../features/user/allUsersSlice';
 import productReducer from '../features/product/productSlice';
 import newProductReducer from '../features/product/newProductSlice';
 import orderReducer from '../features/order/orderSlice';
+import userDetailsReducer from '../features/user/userDetailsSlice';
+import productReviewsReducer from '../features/product/productReviewsSlice';
+import reviewReducer from '../features/product/reviewSlice';
 
 export const store = configureStore({
   reducer: {  
@@ -32,5 +35,8 @@ export const store = configureStore({
     allOrders: allOrdersReducer,
     newProduct: newProductReducer,
     order:orderReducer,
-  },
+    userDetails:userDetailsReducer,
+    productReviews: productReviewsReducer,
+    review:reviewReducer ,
+  }, 
 });

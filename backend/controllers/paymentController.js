@@ -8,7 +8,7 @@ exports.processPayment = catchAsyncErrors(async (req, res, next) => {
     currency: "INR",
     description:"test description",
   });
-
+ 
   res
     .status(200)
     .json({ success: true, client_secret: myPayment.client_secret });

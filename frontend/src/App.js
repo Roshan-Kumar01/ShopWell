@@ -35,12 +35,19 @@ import NewProduct from './component/Admin/NewProduct.js';
 import UpdateProduct from './component/Admin/UpdateProduct.js';
 import OrderList from './component/Admin/OrderList.js';
 import ProcessOrder from './component/Admin/ProcessOrder.js';
+import UserList from './component/Admin/UserList.js';
+import UpdateUser from './component/Admin/UpdateUser.js';
+import ProductReviews from './component/Admin/ProductReviews.js';
+import Contact from "./component/layout/Contact/Contact.js";
+import About from "./component/layout/About/About.js";
 
 function App() { 
      const{isAuthenticated, user} = useSelector((state) => state.user);
+     
      const [stripeApiKey, setStripeApiKey] = useState("");
 
      async function getStripeApiKey() {
+      console.log("getStripeApiKey called.......");
         const { data } = await axios.get("/api/v1/stripeapikey");
         setStripeApiKey(data.stripeApiKey);
      }
@@ -52,17 +59,22 @@ function App() {
         },
       });
       store.dispatch(loadUser());
-      getStripeApiKey();
     },[])
   
-  
+    useEffect(() => {
+      if(isAuthenticated) {
+        getStripeApiKey();
+      }
+    }, [isAuthenticated]);
 
   return (
     <Router>
       <Header />
-      {isAuthenticated && <UserOptions user={user}/>}
+      {isAuthenticated === true && <UserOptions user={user}/>}
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/contact" element={<Contact />} />
          <Route exact path="/product/:id" element={<ProductDetails />} />
          <Route exact path="/products" element={<Products />} />
          <Route  path="/products/:keyword" element={<Products />} />
@@ -90,6 +102,9 @@ function App() {
          <Route exact path="/admin/product/:id" element={isAuthenticated && user.role === "admin" ? <UpdateProduct /> : <Navigate to="/login" replace />} />
          <Route exact path="/admin/orders" element={isAuthenticated && user.role === "admin" ? <OrderList /> : <Navigate to="/login" replace />} />
          <Route exact path="/admin/order/:id" element={isAuthenticated && user.role === "admin" ? <ProcessOrder /> : <Navigate to="/login" replace />} />
+         <Route exact path="/admin/users" element={isAuthenticated && user.role === "admin" ? <UserList /> : <Navigate to="/login" replace />} />
+         <Route exact path="/admin/user/:id" element={isAuthenticated && user.role === "admin" ? <UpdateUser /> : <Navigate to="/login" replace />} />
+         <Route exact path="/admin/reviews" element={isAuthenticated && user.role === "admin" ? <ProductReviews /> : <Navigate to="/login" replace />} />
 
        </Routes>
        <Footer />
