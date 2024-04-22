@@ -21,7 +21,7 @@ import {
 
 const ProductDetails = () => {
     const { id } = useParams();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); 
     const {product, loading, error} = useSelector((state) => state.productDetails)
 
     const { success, error: reviewError } = useSelector(
