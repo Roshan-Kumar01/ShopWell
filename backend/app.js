@@ -14,6 +14,11 @@ const fileUpload = require("express-fileupload")
 
 const errorMiddleware = require("./middleware/error")
 app.use(express.json());
+// app.use(bodyParser.json({limit: '20mb'}));
+// app.use(bodyParser.urlencoded({limit: '20mb', extended: true}));
+app.use(express.json());
+
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(fileUpload());
