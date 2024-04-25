@@ -75,6 +75,17 @@ const LoginSignUp = () => {
         myForm.set("email", email);
         myForm.set("password", password);
         myForm.set("avatar", avatar);
+
+        // console.log("avatar:"+avatar);
+        // Convert FormData to string and calculate its size
+        // const formString = new URLSearchParams(myForm).toString();
+        // const sizeInBytes = new Blob([formString]).size;
+
+        // // Convert bytes to megabytes (MB)
+        // const sizeInMB = sizeInBytes / (1024 * 1024);
+
+        // console.log('Payload size:', sizeInMB, 'MB');
+
         dispatch(register(myForm));
       };
     
@@ -86,6 +97,7 @@ const LoginSignUp = () => {
             if (reader.readyState === 2) {
               setAvatarPreview(reader.result);
               setAvatar(reader.result);
+              console.log(avatar); 
             }
           };
     
@@ -99,7 +111,7 @@ const LoginSignUp = () => {
     <Fragment>
       {loading ? (
         <Loader />
-      ) : (
+      ) : ( 
         <Fragment>
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">

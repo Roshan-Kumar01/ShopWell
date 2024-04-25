@@ -41,7 +41,7 @@ const NewProduct = () => {
 
   useEffect(() => {
     if (error) {
-    //   alert.error(error);
+    //   alert.error(error); 
       dispatch(clearErrors());
     }
 
@@ -66,6 +66,15 @@ const NewProduct = () => {
     images.forEach((image) => {
       myForm.append("images", image);
     });
+    // // Convert FormData to string and calculate its size
+    // const formString = new URLSearchParams(myForm).toString();
+    // const sizeInBytes = new Blob([formString]).size;
+
+    // // Convert bytes to megabytes (MB)
+    // const sizeInMB = sizeInBytes / (1024 * 1024);
+
+    // console.log('Payload size:', sizeInMB, 'MB');
+
     dispatch(createProduct(myForm));
   };
 
@@ -81,6 +90,7 @@ const NewProduct = () => {
       reader.onload = () => {
         if (reader.readyState === 2) {
           setImagesPreview((old) => [...old, reader.result]);
+          // console.log("result:",reader.result);
           setImages((old) => [...old, reader.result]);
         }
       };
