@@ -13,6 +13,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import SideBar from "./Sidebar";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
 import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify";
 
 const NewProduct = () => {
   const dispatch = useDispatch();
@@ -41,12 +42,30 @@ const NewProduct = () => {
 
   useEffect(() => {
     if (error) {
-    //   alert.error(error); 
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (success) {
-    //   alert.success("Product Created Successfully");
+      toast.success("Product Created Successfully",{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       navigate("/admin/dashboard");
       dispatch({ type: NEW_PRODUCT_RESET });
     }

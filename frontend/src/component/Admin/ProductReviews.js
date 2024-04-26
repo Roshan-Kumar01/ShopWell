@@ -16,6 +16,7 @@ import StarIcon from '@mui/icons-material/Star';
 import SideBar from "./Sidebar";
 import { DELETE_REVIEW_RESET } from "../../constants/productConstants";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const ProductReviews = () => {
   const dispatch = useDispatch();
@@ -47,17 +48,44 @@ const ProductReviews = () => {
       dispatch(getAllReviews(productId));
     }
     if (error) {
-    //   alert.error(error);
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (deleteError) {
-    //   alert.error(deleteError);
+      toast.error(deleteError,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (isDeleted) {
-    //   alert.success("Review Deleted Successfully");
+      toast.success("Review Deleted Successfully",{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       navigate("/admin/reviews");
       dispatch({ type: DELETE_REVIEW_RESET });
     }

@@ -9,6 +9,7 @@ import Pagination from "react-js-pagination"
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import MetaData from '../layout/MetaData'
+import {toast} from "react-toastify";
 
 const categories = [
   "Laptop",
@@ -48,13 +49,26 @@ const Product = () => {
   };
 
   useEffect(() => {
+    if(error){
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      dispatch(clearErrors());
+    }
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
   },[dispatch, keyword, currentPage, price,category,ratings])
 
   return (
    <Fragment>
     {loading ? <Loader /> : <Fragment> 
-      <MetaData title="PRODUCTS -- ECOMMERCE"/>
+      <MetaData title="PRODUCTS -- ShopWell"/>
 
        <h2 className="productsHeading">Products</h2>
        <div className="products">

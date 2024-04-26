@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { clearErrors, login, register } from "../../actions/userAction.js";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const LoginSignUp = () => { 
     const navigate = useNavigate();
@@ -44,6 +45,20 @@ const LoginSignUp = () => {
       };
     
       useEffect(() => {
+        if (error) {
+          toast.error(error,{
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+
+          dispatch(clearErrors());
+        }
         if (isAuthenticated) {
           navigate(redirect);
         }

@@ -12,6 +12,7 @@ import SideBar from "./Sidebar";
 import { getAllUsers, clearErrors, deleteUser } from "../../actions/userAction";
 import { DELETE_USER_RESET } from "../../constants/userConstants";
 import {useNavigate} from "react-router-dom"
+import {toast} from "react-toastify";
 
 const UsersList = () => {
   const dispatch = useDispatch();
@@ -33,17 +34,44 @@ const UsersList = () => {
 
   useEffect(() => {
     if (error) {
-    //   alert.error(error);
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (deleteError) {
-    //   alert.error(deleteError);
+      toast.error(deleteError,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (isDeleted) {
-    //   alert.success(message);
+      toast.success(message,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       navigate("/admin/users");
       dispatch({ type: DELETE_USER_RESET });
     }

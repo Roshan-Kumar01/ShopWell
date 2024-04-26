@@ -16,6 +16,7 @@ import {
 } from "../../actions/orderAction";
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
 import {useNavigate} from "react-router-dom"
+import {toast} from "react-toastify";
 
 const OrderList = () => {
   const dispatch = useDispatch();
@@ -33,17 +34,44 @@ const OrderList = () => {
 
   useEffect(() => {
     if (error) {
-    //   alert.error(error);
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (deleteError) {
-    //   alert.error(deleteError);
+      toast.error(deleteError,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (isDeleted) {
-    //   alert.success("Order Deleted Successfully");
+      toast.success("Order Deleted Successfully",{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       navigate("/admin/orders");
       dispatch({ type: DELETE_ORDER_RESET });
     }

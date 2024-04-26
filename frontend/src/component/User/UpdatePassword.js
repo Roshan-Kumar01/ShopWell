@@ -8,7 +8,8 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import MetaData from '../layout/MetaData.js';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import LockIcon from '@mui/icons-material/Lock';
-import { updatePassword } from '../../actions/userAction.js';
+import { updatePassword, clearErrors } from '../../actions/userAction.js';
+import {toast} from "react-toastify";
 
 const UpdatePassword = () => {
     const dispatch = useDispatch();
@@ -33,9 +34,30 @@ const UpdatePassword = () => {
     };
   
     useEffect(() => {
-  
+      if(error){
+        toast.error(error,{
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+          dispatch(clearErrors());
+      }
       if (isUpdated) {
-  
+        toast.success("Profile Updated Successfully",{
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         navigate("/account");
   
         dispatch({

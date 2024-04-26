@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SideBar from "./Sidebar";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
-
+import {toast} from "react-toastify";
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -35,17 +35,44 @@ const ProductList = () => {
 
   useEffect(() => {
     if (error) {
-    //   alert.error(error);
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (deleteError) {
-    //   alert.error(deleteError);
+      toast.error(deleteError,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (isDeleted) {
-    //   alert.success("Product Deleted Successfully");
+      toast.error("Product Deleted Successfully",{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       // navigate("/admin/dashboard");
       dispatch({ type: DELETE_PRODUCT_RESET });
     }

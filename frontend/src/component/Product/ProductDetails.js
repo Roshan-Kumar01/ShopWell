@@ -18,6 +18,7 @@ import {
     Rating,
  } from '@mui/material';
  import { NEW_REVIEW_RESET } from "../../constants/productConstants";
+import {toast} from "react-toastify";
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -30,17 +31,44 @@ const ProductDetails = () => {
        
       useEffect(() => {
         if (error) {
-        //   alert.error(error);
+          toast.error(error,{
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
           dispatch(clearErrors());
         }
     
         if (reviewError) {
-        //   alert.error(reviewError);
+          toast.error(reviewError,{
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
           dispatch(clearErrors());
         }
     
         if (success) {
-        //   alert.success("Review Submitted Successfully");
+          toast.success("Review Submitted Successfully",{
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
           dispatch({ type: NEW_REVIEW_RESET });
         }
         dispatch(getProductDetails(id));
@@ -73,6 +101,16 @@ const ProductDetails = () => {
 
   const addToCartHandler = () => {
     dispatch(addItemsToCart(id, quantity));
+    toast.success("Item Added To Cart",{
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   }
 
   const submitReviewToggle = () => {
@@ -95,7 +133,7 @@ const ProductDetails = () => {
     <Fragment>
         {loading ? <Loader /> : 
           <Fragment> 
-            <MetaData title={`${product.name} -- ECOMMERCE`}/>
+            <MetaData title={`${product.name} -- ShopWell`}/>
           <div className="ProductDetails">
               <div>
                   <Carousel>

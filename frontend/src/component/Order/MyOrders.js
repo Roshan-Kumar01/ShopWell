@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Typography } from '@mui/material';
 import MetaData from "../layout/MetaData";
 import LaunchIcon from '@mui/icons-material/Launch';
+import {toast} from "react-toastify";
 
 const MyOrders = () => {
   const dispatch = useDispatch();
@@ -75,7 +76,16 @@ const MyOrders = () => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 

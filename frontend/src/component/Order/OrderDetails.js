@@ -8,6 +8,7 @@ import { getOrderDetails, clearErrors } from "../../actions/orderAction";
 import Loader from "../layout/Loader/Loader";
 // import { useAlert } from "react-alert";
 import { useParams } from "react-router-dom";
+import {toast} from "react-toastify";
 
 const OrderDetails = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
@@ -18,7 +19,16 @@ const OrderDetails = () => {
 
   useEffect(() => {
     if (error) {
-    //   alert.error(error);
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 

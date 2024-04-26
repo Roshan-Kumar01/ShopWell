@@ -3,8 +3,9 @@ import "./ForgotPassword.css";
 import Loader from "../layout/Loader/Loader";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { useDispatch, useSelector } from "react-redux";
-import { forgotPassword } from "../../actions/userAction";
+import { forgotPassword, clearErrors } from "../../actions/userAction";
 import MetaData from "../layout/MetaData";
+import { toast } from 'react-toastify';
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
@@ -24,12 +25,33 @@ const ForgotPassword = () => {
     dispatch(forgotPassword(myForm));
   };
 
-//   useEffect(() => {
-
-//     if (message) {
-//       alert.success(message);
-//     }
-//   }, [dispatch, error, message]);
+  useEffect(() => {
+    if(error){
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+        dispatch(clearErrors());
+    }
+    if (message) {
+      toast.success(message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
+  }, [dispatch, error, message]);
 
   return (
     <Fragment>

@@ -8,6 +8,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import LockIcon from '@mui/icons-material/Lock';
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -34,12 +35,30 @@ const ResetPassword = () => {
 
   useEffect(() => {
     if (error) {
-    //   alert.error(error);
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (success) {
-    //   alert.success("Password Updated Successfully");
+      toast.success("Password Updated Successfully",{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
 
       navigate("/login");
     }

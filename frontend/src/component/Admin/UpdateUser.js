@@ -15,6 +15,7 @@ import {
 } from "../../actions/userAction";
 import Loader from "../layout/Loader/Loader";
 import {useNavigate, useParams} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const UpdateUser = () => {
   const dispatch = useDispatch();
@@ -45,17 +46,44 @@ const UpdateUser = () => {
       setRole(user.role);
     }
     if (error) {
-    //   alert.error(error);
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (updateError) {
-    //   alert.error(updateError);
+      toast.error(updateError,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (isUpdated) {
-    //   alert.success("User Updated Successfully");
+      toast.error("User Updated Successfully",{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       navigate("/admin/users");
       dispatch({ type: UPDATE_USER_RESET });
     }

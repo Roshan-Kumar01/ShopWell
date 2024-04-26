@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import "./UpdateProfile.css"
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants';
 import MetaData from '../layout/MetaData.js';
+import {toast} from "react-toastify";
 
 const UpdateProfile = () => {
     const navigate = useNavigate();
@@ -29,8 +30,32 @@ const UpdateProfile = () => {
             setEmail(user.email);
             setAvatarPreview(user.avatar.url);
         }
-
+        if(error){
+          toast.error(error,{
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+            dispatch(clearErrors());
+        }
+        
         if (isUpdated) {
+          toast.success("Profile Updated Successfully",{
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+
           dispatch(loadUser());
           navigate("/account");
           dispatch({

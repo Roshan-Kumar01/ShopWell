@@ -16,6 +16,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import SideBar from "./Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
 import { useParams, useNavigate } from "react-router-dom";
+import {toast} from "react-toastify";
 
 const UpdateProduct = () => {
   const dispatch = useDispatch();
@@ -64,17 +65,44 @@ const UpdateProduct = () => {
       setOldImages(product.images);
     }
     if (error) {
-    //   alert.error(error);
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (updateError) {
-    //   alert.error(updateError);
+      toast.error(updateError,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
 
     if (isUpdated) {
-    //   alert.success("Product Updated Successfully");
+      toast.error("Product Updated Successfully",{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       navigate("/admin/products");
       dispatch({ type: UPDATE_PRODUCT_RESET });
     }

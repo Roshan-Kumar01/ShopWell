@@ -16,6 +16,7 @@ import { Button } from "@mui/material";
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
 import "./processOrder.css";
 import {useParams} from "react-router-dom"
+import {toast} from "react-toastify";
 
 const ProcessOrder = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
@@ -39,15 +40,42 @@ const ProcessOrder = () => {
 
   useEffect(() => {
     if (error) {
-    //   alert.error(error);
+      toast.error(error,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
     if (updateError) {
-    //   alert.error(updateError);
+      toast.error(updateError,{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch(clearErrors());
     }
     if (isUpdated) {
-    //   alert.success("Order Updated Successfully");
+      toast.success("Order Updated Successfully",{
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       dispatch({ type: UPDATE_ORDER_RESET });
     }
 
