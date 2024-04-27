@@ -5,9 +5,11 @@ import {
   UPDATE_PROFILE_FAIL,
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
+  UPDATE_PASSWORD_RESET,
   UPDATE_PASSWORD_FAIL,
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS,
+  UPDATE_PROFILE_RESET,
   UPDATE_USER_FAIL,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
@@ -39,6 +41,8 @@ const profileSlice = createSlice({
       .addCase(UPDATE_PROFILE_FAIL, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      }).addCase(UPDATE_PROFILE_RESET,(state) => {
+        state.isUpdated=false;
       })
       .addCase(UPDATE_PASSWORD_REQUEST, (state) => {
         state.loading = true;
@@ -57,6 +61,9 @@ const profileSlice = createSlice({
       .addCase(UPDATE_USER_SUCCESS, (state) => {
         state.loading = false;
         state.isUpdated = true;
+      })
+      .addCase(UPDATE_PASSWORD_RESET,(state) =>{
+        state.isUpdated=false;
       })
       .addCase(UPDATE_USER_FAIL, (state, action) => {
         state.loading = false;

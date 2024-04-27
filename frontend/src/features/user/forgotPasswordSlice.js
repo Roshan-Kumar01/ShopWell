@@ -34,7 +34,7 @@ const forgotPasswordSlice = createSlice({
       })
       .addCase(FORGOT_PASSWORD_FAIL, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload; 
       })
       .addCase(RESET_PASSWORD_REQUEST, (state) => {
         state.loading = true;

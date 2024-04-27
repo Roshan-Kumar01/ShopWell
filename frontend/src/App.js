@@ -9,17 +9,16 @@ import ProductDetails from "./component/Product/ProductDetails.js"
 import Products from "./component/Product/Products.js"
 import Search from "./component/Product/Search.js"
 import LoginSignUp from './component/User/LoginSignUp.js';
-import {store} from "./app/store.js"
 import { loadUser } from './actions/userAction.js';
 import UserOptions from "./component/layout/Header/UserOptions.js"
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Profile from "./component/User/Profile.js"
 // import ProtectedRoute from './component/Route/ProtectedRoute.js';
 import UpdateProfile from "./component/User/UpdateProfile.js" 
 import UpdatePassword from "./component/User/UpdatePassword.js"
 import ForgotPassword from "./component/User/ForgotPassword.js"
 import ResetPassword from "./component/User/ResetPassword.js"
-import Cart from "./component/Cart/Cart.js"
+import Cart from "./component/Cart/Cart.js" 
 import Shipping from "./component/Cart/Shipping.js"
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js"
 import axios from 'axios';
@@ -40,11 +39,13 @@ import UpdateUser from './component/Admin/UpdateUser.js';
 import ProductReviews from './component/Admin/ProductReviews.js';
 import Contact from "./component/layout/Contact/Contact.js";
 import About from "./component/layout/About/About.js";
+import Loader from './component/layout/Loader/Loader.js';
 
 function App() { 
      const{isAuthenticated, user} = useSelector((state) => state.user);
-     
+     const dispatch = useDispatch();
      const [stripeApiKey, setStripeApiKey] = useState("");
+     const [loading, setLoading] = useState(true);
 
      async function getStripeApiKey() {
       console.log("getStripeApiKey called.......");
@@ -58,14 +59,20 @@ function App() {
           families:["Roboto", "Droid Sans", "Chilanka"],
         },
       });
-      store.dispatch(loadUser());
-    },[])
+      dispatch(loadUser())
+        .then(() => setLoading(false))
+        .catch(() => setLoading(false));
+    },[dispatch])
   
     useEffect(() => {
       if(isAuthenticated) {
         getStripeApiKey();
       }
     }, [isAuthenticated]);
+    
+    if (loading) {
+      return <Loader/>;
+    }
 
   return (
     <Router>

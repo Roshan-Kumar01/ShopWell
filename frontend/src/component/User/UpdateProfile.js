@@ -1,4 +1,4 @@
-import React, { useState,useRef,Fragment,useEffect } from 'react'
+import React, { useState,Fragment,useEffect } from 'react'
 import Loader from '../layout/Loader/Loader'
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import FaceIcon from '@mui/icons-material/Face';
@@ -17,8 +17,8 @@ const UpdateProfile = () => {
     const { user } = useSelector((state) => state.user);
     const { error, isUpdated, loading } = useSelector((state) => state.profile);
     
-    const [avatar, setAvatar] = useState("/Profile.png");
-    const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
+    const [avatar, setAvatar] = useState("C:/Users/Rajiv singh/Desktop/MERN ECOMMERCE PROJECT/frontend/public/Profile.png");
+    const [avatarPreview, setAvatarPreview] = useState("C:/Users/Rajiv singh/Desktop/MERN ECOMMERCE PROJECT/frontend/public/Profile.png");
 
     const[name, setName] = useState("");
     const[email, setEmail] = useState("");
@@ -28,6 +28,7 @@ const UpdateProfile = () => {
         if(user){
             setName(user.name);
             setEmail(user.email);
+            setAvatar(user.avatar.url);
             setAvatarPreview(user.avatar.url);
         }
         if(error){

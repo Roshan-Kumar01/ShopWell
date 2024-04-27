@@ -45,7 +45,7 @@ const LoginSignUp = () => {
       };
     
       useEffect(() => {
-        if (error) {
+        if (error) { 
           toast.error(error,{
             position: "top-right",
             autoClose: 5000,
